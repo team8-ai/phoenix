@@ -1,5 +1,55 @@
 # Changelog
 
+## [8.27.1](https://github.com/Arize-ai/phoenix/compare/arize-phoenix-v8.27.0...arize-phoenix-v8.27.1) (2025-04-25)
+
+
+### Bug Fixes
+
+* Allow scroll on settings pages ([#7284](https://github.com/Arize-ai/phoenix/issues/7284)) ([c25b071](https://github.com/Arize-ai/phoenix/commit/c25b07143b9c714b75e3d9655ca9db161542acb0))
+
+## [8.27.0](https://github.com/Arize-ai/phoenix/compare/arize-phoenix-v8.26.3...arize-phoenix-v8.27.0) (2025-04-24)
+
+
+### Features
+
+* Add /readyz endpoint to confirm database connectivity ([#7262](https://github.com/Arize-ai/phoenix/issues/7262)) ([ec11ed3](https://github.com/Arize-ai/phoenix/commit/ec11ed31c3501e91d66282dedaa5a4e0cbaedd58))
+* **tracing:** scroll selected span into view when navigating to a trace ([#7227](https://github.com/Arize-ai/phoenix/issues/7227)) ([970c721](https://github.com/Arize-ai/phoenix/commit/970c721187a2b9024452ff7cef9a89a599d42bec))
+
+
+### Documentation
+
+* Update README.md ([#7213](https://github.com/Arize-ai/phoenix/issues/7213)) ([dc27c32](https://github.com/Arize-ai/phoenix/commit/dc27c322c1f73fa696f34e650129ee54dec9a96f))
+
+## [8.26.3](https://github.com/Arize-ai/phoenix/compare/arize-phoenix-v8.26.2...arize-phoenix-v8.26.3) (2025-04-18)
+
+
+### Bug Fixes
+
+* require starlette&gt;=0.46.0 ([#7199](https://github.com/Arize-ai/phoenix/issues/7199)) ([c3bb73e](https://github.com/Arize-ai/phoenix/commit/c3bb73e911857d9da9737cb5d1d3fcf42ed1a753))
+
+## [8.26.2](https://github.com/Arize-ai/phoenix/compare/arize-phoenix-v8.26.1...arize-phoenix-v8.26.2) (2025-04-17)
+
+
+### Bug Fixes
+
+* remove WebSocket dependency ([#7172](https://github.com/Arize-ai/phoenix/issues/7172)) ([d390b37](https://github.com/Arize-ai/phoenix/commit/d390b37a749e3e667042d7e8723fac5f74e5d3a8))
+
+## [8.26.1](https://github.com/Arize-ai/phoenix/compare/arize-phoenix-v8.26.0...arize-phoenix-v8.26.1) (2025-04-16)
+
+
+### Bug Fixes
+
+* disallow admin user to change their own role ([#7165](https://github.com/Arize-ai/phoenix/issues/7165)) ([48a79cc](https://github.com/Arize-ai/phoenix/commit/48a79ccda74323686e1de2d862c147865039723e))
+* **ui:** hide menu for changing role for self in UsersTable ([#7167](https://github.com/Arize-ai/phoenix/issues/7167)) ([44f7e67](https://github.com/Arize-ai/phoenix/commit/44f7e6725958213bc5833144ab7dc012af2a5310))
+
+## [8.26.0](https://github.com/Arize-ai/phoenix/compare/arize-phoenix-v8.25.0...arize-phoenix-v8.26.0) (2025-04-16)
+
+
+### Features
+
+* add PHOENIX_ADMIN_SECRET environment variable ([#7151](https://github.com/Arize-ai/phoenix/issues/7151)) ([bde184e](https://github.com/Arize-ai/phoenix/commit/bde184efda680fc212fdd4fd4346d66e9914cf38))
+* **tracing:** add load more and loading state to the infinite scroll ([#7132](https://github.com/Arize-ai/phoenix/issues/7132)) ([7e97c51](https://github.com/Arize-ai/phoenix/commit/7e97c519aa8813cfa1deff22b9b15cb49d723c00))
+
 ## [8.25.0](https://github.com/Arize-ai/phoenix/compare/arize-phoenix-v8.24.2...arize-phoenix-v8.25.0) (2025-04-15)
 
 

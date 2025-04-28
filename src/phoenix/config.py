@@ -119,10 +119,6 @@ ENV_LOG_MIGRATIONS = "PHOENIX_LOG_MIGRATIONS"
 """
 Whether or not to log migrations. Defaults to true.
 """
-ENV_PHOENIX_ENABLE_WEBSOCKETS = "PHOENIX_ENABLE_WEBSOCKETS"
-"""
-Whether or not to enable websockets. Defaults to None.
-"""
 
 ENV_PHOENIX_DANGEROUSLY_DISABLE_MIGRATIONS = "PHOENIX_DANGEROUSLY_DISABLE_MIGRATIONS"
 """
@@ -144,6 +140,17 @@ ENV_PHOENIX_SERVER_INSTRUMENTATION_OTLP_TRACE_COLLECTOR_GRPC_ENDPOINT = (
 ENV_PHOENIX_ENABLE_AUTH = "PHOENIX_ENABLE_AUTH"
 ENV_PHOENIX_DISABLE_RATE_LIMIT = "PHOENIX_DISABLE_RATE_LIMIT"
 ENV_PHOENIX_SECRET = "PHOENIX_SECRET"
+"""
+The secret key used for signing JWTs. It must be at least 32 characters long and include at least
+one digit and one lowercase letter.
+"""
+ENV_PHOENIX_ADMIN_SECRET = "PHOENIX_ADMIN_SECRET"
+"""
+A secret key that can be used as a bearer token instead of an API key. It authenticates as the
+first system user. This key must be at least 32 characters long, include at least one digit and
+one lowercase letter, and must be different from PHOENIX_SECRET. Additionally, it must not be set
+if PHOENIX_SECRET is not configured.
+"""
 ENV_PHOENIX_DEFAULT_ADMIN_INITIAL_PASSWORD = "PHOENIX_DEFAULT_ADMIN_INITIAL_PASSWORD"
 """
 The initial password for the default admin account, which defaults to 'admin' if not
@@ -383,6 +390,29 @@ def get_env_phoenix_secret() -> Optional[str]:
     return phoenix_secret
 
 
+def get_env_phoenix_admin_secret() -> Optional[str]:
+    """
+    Gets the value of the PHOENIX_ADMIN_SECRET environment variable
+    and performs validation.
+    """
+    phoenix_admin_secret = getenv(ENV_PHOENIX_ADMIN_SECRET)
+    if phoenix_admin_secret is None:
+        return None
+    if (phoenix_secret := get_env_phoenix_secret()) is None:
+        raise ValueError(
+            f"`{ENV_PHOENIX_ADMIN_SECRET}` must be not be set without "
+            f"setting `{ENV_PHOENIX_SECRET}`."
+        )
+    from phoenix.auth import REQUIREMENTS_FOR_PHOENIX_SECRET
+
+    REQUIREMENTS_FOR_PHOENIX_SECRET.validate(phoenix_admin_secret, "Phoenix secret")
+    if phoenix_admin_secret == phoenix_secret:
+        raise ValueError(
+            f"`{ENV_PHOENIX_ADMIN_SECRET}` must be different from `{ENV_PHOENIX_SECRET}`"
+        )
+    return phoenix_admin_secret
+
+
 def get_env_default_admin_initial_password() -> str:
     from phoenix.auth import DEFAULT_ADMIN_PASSWORD
 
@@ -538,10 +568,6 @@ def get_env_smtp_port() -> int:
 
 def get_env_smtp_validate_certs() -> bool:
     return _bool_val(ENV_PHOENIX_SMTP_VALIDATE_CERTS, True)
-
-
-def get_env_enable_websockets() -> Optional[bool]:
-    return _bool_val(ENV_PHOENIX_ENABLE_WEBSOCKETS)
 
 
 @dataclass(frozen=True)
@@ -1108,7 +1134,28 @@ def get_env_allowed_origins() -> Optional[list[str]]:
 def verify_server_environment_variables() -> None:
     """Verify that the environment variables are set correctly. Raises an error otherwise."""
     get_env_root_url()
+    get_env_phoenix_secret()
+    get_env_phoenix_admin_secret()
+
+    # Notify users about deprecated environment variables if they are being used.
+    if os.getenv("PHOENIX_ENABLE_WEBSOCKETS") is not None:
+        logger.warning(
+            "The environment variable PHOENIX_ENABLE_WEBSOCKETS is deprecated "
+            "because WebSocket is no longer necessary."
+        )
 
 
 SKLEARN_VERSION = cast(tuple[int, int], tuple(map(int, version("scikit-learn").split(".", 2)[:2])))
 PLAYGROUND_PROJECT_NAME = "playground"
+
+SYSTEM_USER_ID: Optional[int] = None
+"""
+The ID of the system user in the database.
+
+This value is set during application startup by the facilitator and is used to
+identify the system user for authentication purposes.
+
+When the PHOENIX_ADMIN_SECRET is used as a bearer token in API requests, the
+request is authenticated as the system user with the user_id set to this
+SYSTEM_USER_ID value (only if this variable is not None).
+"""
