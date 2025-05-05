@@ -1,5 +1,59 @@
 # Changelog
 
+## [8.31.0](https://github.com/Arize-ai/phoenix/compare/arize-phoenix-v8.30.0...arize-phoenix-v8.31.0) (2025-05-01)
+
+
+### Features
+
+* **components:** video for tutorials ([#7376](https://github.com/Arize-ai/phoenix/issues/7376)) ([c858268](https://github.com/Arize-ai/phoenix/commit/c85826869b5177e06be051cf9a6e8d042e5f95d4))
+
+
+### Bug Fixes
+
+* **subscriptions:** make gql subscriptions basename aware ([#7382](https://github.com/Arize-ai/phoenix/issues/7382)) ([19674f4](https://github.com/Arize-ai/phoenix/commit/19674f4cee732ce48ff7f423c5ad0f2f1f26f7ab))
+
+## [8.30.0](https://github.com/Arize-ai/phoenix/compare/arize-phoenix-v8.29.0...arize-phoenix-v8.30.0) (2025-04-30)
+
+
+### Features
+
+* Add "copy name" button to project menu ([#7358](https://github.com/Arize-ai/phoenix/issues/7358)) ([78d05a3](https://github.com/Arize-ai/phoenix/commit/78d05a3be0d45deab7f21938e5508a47607b0918))
+* Add `SpanQuery` DSL to phoenix client and include `get_spans_dataframe` to client ([#7071](https://github.com/Arize-ai/phoenix/issues/7071)) ([ee56e9a](https://github.com/Arize-ai/phoenix/commit/ee56e9a9bf9e13c8793bd4a3b915ef083f679f2a))
+* **api:** add RBAC primitives for fastAPI / REST ([#7349](https://github.com/Arize-ai/phoenix/issues/7349)) ([9d2cc9c](https://github.com/Arize-ai/phoenix/commit/9d2cc9cc087659a9e6f6126e780ae2996c54b87d))
+* separate TLS enabled flags for HTTP and gRPC ([#7370](https://github.com/Arize-ai/phoenix/issues/7370)) ([602277d](https://github.com/Arize-ai/phoenix/commit/602277d1be4b043680c7445000ddb5f322fc32bf))
+
+
+### Bug Fixes
+
+* **playground:** log playground subscription errors ([#7353](https://github.com/Arize-ai/phoenix/issues/7353)) ([5b6edb8](https://github.com/Arize-ai/phoenix/commit/5b6edb8f6b26c55252a28f13784e68c435622ed5))
+
+## [8.29.0](https://github.com/Arize-ai/phoenix/compare/arize-phoenix-v8.28.1...arize-phoenix-v8.29.0) (2025-04-28)
+
+
+### Features
+
+* environment variables for TLS ([#7296](https://github.com/Arize-ai/phoenix/issues/7296)) ([91e8875](https://github.com/Arize-ai/phoenix/commit/91e8875b169976a0e25fc2c48aa381859048ea09))
+
+## [8.28.1](https://github.com/Arize-ai/phoenix/compare/arize-phoenix-v8.28.0...arize-phoenix-v8.28.1) (2025-04-28)
+
+
+### Bug Fixes
+
+* Improve browser compatibility for Table sizing features ([#7321](https://github.com/Arize-ai/phoenix/issues/7321)) ([a7c03ec](https://github.com/Arize-ai/phoenix/commit/a7c03ec7e623c51fe89bdbcf95ebfcc8c42caf4f))
+* simplify homeLoaderQuery ([#7336](https://github.com/Arize-ai/phoenix/issues/7336)) ([d92d037](https://github.com/Arize-ai/phoenix/commit/d92d037d4d37d55ce6dd12b87381c2196471ebd2))
+
+## [8.28.0](https://github.com/Arize-ai/phoenix/compare/arize-phoenix-v8.27.1...arize-phoenix-v8.28.0) (2025-04-28)
+
+
+### Features
+
+* gracefully handle ctrl-c ([#7305](https://github.com/Arize-ai/phoenix/issues/7305)) ([6365934](https://github.com/Arize-ai/phoenix/commit/63659344d288b1a4742ebb1a78b9108c6b9f72c6))
+
+
+### Bug Fixes
+
+* use float for token count summaries ([#7319](https://github.com/Arize-ai/phoenix/issues/7319)) ([783a385](https://github.com/Arize-ai/phoenix/commit/783a385ce9842e6646545e3af4c35698279f7d0c))
+
 ## [8.27.1](https://github.com/Arize-ai/phoenix/compare/arize-phoenix-v8.27.0...arize-phoenix-v8.27.1) (2025-04-25)
 
 
