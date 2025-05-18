@@ -1,4 +1,3 @@
-import React from "react";
 import { graphql, useLazyLoadQuery } from "react-relay";
 import { css } from "@emotion/react";
 
@@ -71,7 +70,7 @@ export function SessionDetails(props: SessionDetailsProps) {
   const { sessionId } = props;
   const data = useLazyLoadQuery<SessionDetailsQuery>(
     graphql`
-      query SessionDetailsQuery($id: GlobalID!) {
+      query SessionDetailsQuery($id: ID!) {
         session: node(id: $id) {
           ... on ProjectSession {
             numTraces
@@ -106,14 +105,8 @@ export function SessionDetails(props: SessionDetailsProps) {
                     cumulativeTokenCountPrompt
                     latencyMs
                     startTime
-                    spanAnnotations {
-                      name
-                      label
-                      score
-                      explanation
-                      annotatorKind
-                    }
                     spanId
+                    ...AnnotationSummaryGroup
                   }
                 }
               }
